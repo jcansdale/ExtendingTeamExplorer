@@ -1,0 +1,299 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head><link rel="stylesheet" type="text/css" href="description/Combined.css,0:HeaderFooterSprite,0:Header.NonMtps,1:LinkList;/Areas/Centers/Themes/StandardDevCenter/Content:0,/Areas/Epx/Themes/Base/Content:1&amp;amp;hashKey=C9973DA951AE6202C9B348379A1BE49D" xmlns="http://www.w3.org/1999/xhtml" />
+<link type="text/css" rel="stylesheet" xmlns="http://www.w3.org/1999/xhtml" />
+<link rel="stylesheet" type="text/css" href="description/a7bd86db-8a7a-43ce-8954-21f8f839f51bCombined.css,0:HeaderFooterSprite,0:Footer.NonMtps,1:LinkList;/Areas/Centers/Themes/StandardDevCenter/Content:0,/Areas/Epx/Themes/Base/Content:1&amp;amp;hashKey=F576C687BC536B84D6E5B3246EE39B49" xmlns="http://www.w3.org/1999/xhtml" />
+<link type="text/css" rel="stylesheet" xmlns="http://www.w3.org/1999/xhtml" />
+
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Extending Team Explorer in Visual Studio 2012</title>
+        <link href="description/Galleries.css" type="text/css" rel="Stylesheet" /><link href="description/Layout.css" type="text/css" rel="Stylesheet" /><link href="description/Brand.css" type="text/css" rel="Stylesheet" />
+        <link href="description/iframedescription.css" rel="Stylesheet" type="text/css" />
+        <script src="description/offline.js" type="text/javascript"></script>
+        <style type="text/css">
+            #projectInfo {
+                overflow: auto;
+            }
+            #longDesc {
+                clear:both;
+                margin: 25px 0 10px 0;
+            }
+
+            #SampleIndexList{
+                margin-left: 15px;
+            }
+        </style>
+    </head>
+<body>
+    <div id="offlineDescription">
+        <h1>Extending Team Explorer in Visual Studio 2012</h1>
+        <br/>
+        <div id="projectInfo">
+            <div class="section">
+                    <div class="itemBarLong tagsContainer">
+                        <label for="Technologies">Technologies</label>
+                        <div id="Technologies">
+                            Visual Studio 2012, Team Explorer
+                        </div>
+                    </div>
+                    <div class="itemBarLong tagsContainer">
+                        <label for="Topics">Topics</label>
+                        <div id="Topics">
+                            Team Explorer Extensibility
+                        </div>
+                    </div>
+                <div class="itemBarLong">
+                    <label for="Platforms">Platforms</label>
+                    <div id="Platforms">
+                        Desktop
+                    </div>
+                </div>
+                <div class="itemBarLong">
+                    <label for="Requirements">Requirements</label>
+                    <div id="Requirements">
+                        
+                    </div>
+                </div>
+                <div class="itemBar">
+                    <label for="LastUpdated">Primary language</label>
+                    <div id="LastUpdated">en-US</div>
+                </div>
+                <div class="itemBar">
+                    <label for="LastUpdated">Updated</label>
+                    <div id="LastUpdated">12/23/2012</div>
+                </div>
+                <div class="itemBarLong">
+                    <label for="License">License</label>
+                    <div id="License">
+                        <a href="license.rtf">MS-LPL</a></div>
+                </div>
+                <div class="itemBar">
+                    <div class="viewonlinecont">
+                        <a data-link="online" href="http://code.msdn.microsoft.com/Extending-Explorer-in-9dccd594">View this sample online</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+                   
+<script type="text/javascript">
+    function initializePage() {
+        var otherTabClass = 'otherTab';
+        var hiddenPreClass = 'hidden';
+
+        var htmlDecode = function(encodedData) {
+            var decodedData = "";
+            if (encodedData) {
+                var div = document.createElement('div');
+                div.innerHTML = encodedData;
+                decodedData = div.firstChild.nodeValue.replace( /\\r\\n/ig , '\r\n');
+            }
+            return decodedData;
+        };
+                
+        Galleries.iterateElem(Galleries.findElem(null, 'div', 'scriptcode'), function (index, scriptBlock) {
+            var titleElem = Galleries.findElem(scriptBlock, 'div', 'title')[0];
+            var labelElems = Galleries.findElem(titleElem, 'span');
+            if (labelElems.length == 0) {
+                labelElems = titleElem;
+            }
+            var languageSpans = Galleries.findElem(scriptBlock, 'span', 'hidden');
+            var pres = Galleries.findElem(scriptBlock, 'pre');
+            if (languageSpans.length > 0 && pres.length > 1) {
+                Galleries.iterateElem(labelElems, function(index, elem) {
+                    var codePre = pres[index];
+                    var labelSpan = elem;
+                    var languageSpan = languageSpans[index];
+                            
+                    elem.code = codePre.innerHTML.replace( /(\r(\n)?)|((\r)?\n)/ig , '\\r\\n');
+                            
+                    codePre.className = codePre.className.replace(hiddenPreClass, '');
+                            
+                    languageSpan.parentNode.removeChild(languageSpan);
+                });
+
+                pres = Galleries.findElem(scriptBlock, 'pre');
+                Galleries.iterateElem(labelElems, function(index, elem) {
+                    var codePre = pres[index];
+                    var labelSpan = elem;
+                    if (index == 0) {
+                        scriptBlock.activeTab = 0;
+                    }
+                    else {
+                        labelSpan.className += otherTabClass;
+                        codePre.className += hiddenPreClass;
+                    }
+                    Galleries.attachEventHandler(labelSpan, 'click', function(e) {
+                        var activeTab = scriptBlock.activeTab;
+                        labelElems[activeTab].className += otherTabClass;
+                        pres[activeTab].className += hiddenPreClass;
+
+                        codePre.className = codePre.className.replace(hiddenPreClass, '');
+                        labelSpan.className = labelSpan.className.replace(otherTabClass, '');
+                        scriptBlock.activeTab = index;
+                    });
+                });
+
+                var preview = Galleries.findElem(scriptBlock, 'div', 'preview');
+                if (preview.length == 0) {
+                    preview.push(pres[pres.length - 1]);
+                }
+                Galleries.iterateElem(preview, function(index, elem) {
+                    elem.parentNode.removeChild(elem);
+                });
+
+                if (window.clipboardData && clipboardData.setData) {
+                    var copyLink = document.createElement('a');
+                    copyLink.href = 'javascript:void(0);';
+                    copyLink.className = 'copyCode';
+                    copyLink.innerHTML = 'Copy code';
+                    Galleries.attachEventHandler(copyLink, 'click', function (e) {
+                        clipboardData.setData("Text", htmlDecode(labelElems[scriptBlock.activeTab].code));
+                        return false;
+                    });
+                    scriptBlock.insertBefore(copyLink, scriptBlock.childNodes[0]);
+                }
+            }
+        });
+    }
+
+    Galleries.onWindowLoad(function(){
+        initializePage();
+    });
+
+</script>
+<div id="longDesc">
+    
+<h2>Introduction</h2>
+<div>Team Explorer in Visual Studio 2012 offers multiple options for extending the user experience.&nbsp; This sample demonstrates several of the extensibility points by:</div>
+<div></div>
+<ul>
+<li>Adding a new &quot;Recent Changes&quot; Team Explorer page with two sections. </li><li>Adding a new &quot;Selected File Info&quot; section to the built-in Pending Changes page.
+</li><li>Adding a &quot;Recent Changes&quot; navigation link under the Pending Changes navigation item.
+</li></ul>
+<h2><span>Building the Sample</span></h2>
+<div>This sample requires Visual Studio 2012 and the Visual Studio 2012 SDK.&nbsp; Open the solution and press F5 to run/debug.</div>
+<h2>Team Explorer Extensibility</h2>
+<h3>Pages and Sections</h3>
+<p>A single view in Team Explorer is referred to as a page (<a title="ITeamExplorerPage" href="http://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.controls.iteamexplorerpage.aspx">ITeamExplorerPage</a>).&nbsp; A page may provide a WPF control that
+ is placed at the top of the client area, but the control is not required.&nbsp; No two pages can have the same ID in Team Explorer.</p>
+<p>A page may contain one or more sections (<a title="ITeamExplorerSection" href="http://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.controls.iteamexplorersection.aspx">ITeamExplorerSection</a>)&nbsp;that are arranged in priority order.&nbsp;
+ A section&nbsp;also provides a WPF&nbsp;control that contains the UI for the section.&nbsp;&nbsp;Sections may be first-party or third-party extensions to a page.</p>
+<h3>Home Page - Navigation Items and Links</h3>
+<p>The Home page is a special Team Explorer page that has its own extensibility.&nbsp; The Home page contains a list of navigation items (<a title="ITeamExplorerNavigationItem" href="http://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.controls.iteamexplorernavigationitem.aspx">ITeamExplorerNavigationItem</a>)
+ and navigation links (<a title="ITeamExplorerNavigationLink" href="http://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.controls.iteamexplorernavigationlink.aspx">ITeamExplorerNavigationLink</a>).&nbsp; The list of navigation item plugins is used
+ for both the Home page and the Team Explorer navigation control at the top of the window.</p>
+<h3>Plugin Interfaces</h3>
+<p>A plugin&nbsp;should implement the interface for the extension it is providing.&nbsp; The interfaces are declared in the <a class="libraryLink" href="http://msdn.microsoft.com/en-US/library/Microsoft.TeamFoundation.Controls.aspx"  title="Auto generated link to Microsoft.TeamFoundation.Controls">Microsoft.TeamFoundation.Controls</a> namespace in Microsoft.TeamFoundation.Controls.dll.</p>
+<p>Page:<br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a title="ITeamExplorerPage" href="http://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.controls.iteamexplorerpage.aspx">
+ITeamExplorerPage</a></p>
+<p>Section:<br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a title="ITeamExplorerSection" href="http://msdn.microsoft.com/en-us/library/hh721707.aspx">
+ITeamExplorerSection</a></p>
+<p>Navigation Item:<br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a title="ITeamExplorerNavigationItem" href="http://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.controls.iteamexplorernavigationitem.aspx">
+ITeamExplorerNavigationItem</a></p>
+<p>Navigation Link:<br>
+&nbsp;&nbsp;&nbsp;&nbsp; <a title="ITeamExplorerNavigationLink" href="http://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.controls.iteamexplorernavigationlink.aspx">
+ITeamExplorerNavigationLink</a></p>
+<h3>Plugin Discovery</h3>
+<p>Plugin discovery for Team Explorer&nbsp;is accomplished&nbsp;using <a href="http://msdn.microsoft.com/en-us/library/dd460648(v=vs.110).aspx">
+MEF</a>.&nbsp; The assembly containing any plugins must be installed in one of Visual Studio&rsquo;s supported extension directories, and must be accompanied by an extension.vsixmanifest file that declares the assembly provides MEF components.&nbsp; The recommended
+ packaging mechanism is using VSIX and the Visual Studio Extension Gallery.</p>
+<p>There&nbsp;is a&nbsp;class attribute for each plugin type&nbsp;that exports&nbsp;the plugin for discovery by Team Explorer.&nbsp; The attributes are defined in the <a class="libraryLink" href="http://msdn.microsoft.com/en-US/library/Microsoft.TeamFoundation.Controls.aspx"  title="Auto generated link to Microsoft.TeamFoundation.Controls">Microsoft.TeamFoundation.Controls</a> namespace in Microsoft.TeamFoundation.Controls.dll.</p>
+<p>Page:<br>
+&nbsp;&nbsp;&nbsp;&nbsp; [<a href="http://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.controls.teamexplorerpageattribute.aspx">TeamExplorerPage</a>(&quot;guid&quot;)]</p>
+<p>Section:<br>
+&nbsp;&nbsp;&nbsp;&nbsp; [<a href="http://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.controls.teamexplorersectionattribute.aspx">TeamExplorerSection</a>(&quot;guid&quot;, &quot;parentPageGuid&quot;, priority)]</p>
+<p>Navigation Item:<br>
+&nbsp;&nbsp;&nbsp;&nbsp; [<a href="http://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.controls.teamexplorernavigationitemattribute.aspx">TeamExplorerNavigationItem</a>(&quot;guid&quot;, priority)]</p>
+<p>Navigation Link:<br>
+&nbsp;&nbsp;&nbsp;&nbsp; [<a href="http://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.controls.teamexplorernavigationlinkattribute.aspx">TeamExplorerNavigationLink</a>(&quot;guid&quot;, &quot;parentNavigationItemGuid&quot;, priority)]</p>
+<h3>Plugin Lifetime</h3>
+<p>No page or section will be&nbsp;instantiated until the user navigates to it for the first time.&nbsp; The page and all of its sections are then instantiated and then initialized in priority order.&nbsp; A page or section is only initialized once during its
+ lifetime.&nbsp; The Initialize method is the appropriate time to query for any services and do any initialization for child controls.&nbsp; EventArgs provide an IServiceProvider as well as optional initial page context.</p>
+<p>In order to manage memory efficiently, only the current page is held in memory at any given time.&nbsp; When the user navigates to a new page, the current page will have its SaveContext method called in order to preserve any context, and then it is closed.&nbsp;
+ See the &quot;Context Management&quot; section for more discussion on how that context object is managed.</p>
+<h3>Context Management</h3>
+<p>When a user navigates to a page, the caller may provide an optional initial context object.&nbsp; This object is passed to the page during the Initialize method.&nbsp; The page can then hydrate its data model and view model asynchronously.</p>
+<p>When a page is deactivated, the page/sections SaveContext method will be called before the plugin is disposed.&nbsp; Each page/section can optionally return a context object that will be preserved by the Team Explorer framework as part of the navigation
+ history.&nbsp; When the user clicks the back button to navigate back to the previous page, the page/sections will be reconstructed and the same context that was stored during SaveContext will be provided back to them during Initialize.&nbsp; The page/sections
+ can then use the context to rehydrate their model/viewmodel to the state before the page was closed.</p>
+<p>If a user never uses the back button to return to a page, the stored context will eventually fall off the end of the navigation history buffer (which&nbsp;is capped at a reasonable number).&nbsp; When this happens, the context object will be checked to see
+ if it implements IDisposable, and it will be disposed for you.&nbsp; If you do not want your context object to be disposed, please wrap it in a container object that does not implement IDisposable.</p>
+<h3>Sharing Info:&nbsp;Data, Selection, Etc</h3>
+<p>The page host container implements IServiceContainer/IServiceProvider and provides a place for pages and sections to offer services to each other.&nbsp; In order to add services to the page host's service container, it may be retrieved by calling GetService(typeof(IServiceContainer)).&nbsp;
+ GetService calls that cannot be resolved by the page host will be relayed on to the parent IVsPackage.&nbsp; This allows plugins to discover services in Visual Studio.</p>
+<p>The ITeamExplorerPage/Section interfaces also include a GetExtensibilityService method.&nbsp; This method is called on the page and each section whenever code within Team Explorer calls GetService.&nbsp; The intent of this design is to allow a page/section
+ to expose its internal data for other sections to consume.&nbsp; One might just create the&nbsp;extensibility object and place&nbsp;it into the service container, and that would work fine.&nbsp; What GetExtensibilityService adds is the ability to have the
+ extensibility object lazily created only when it is asked for.&nbsp; This allows the plugin to avoid spinning up its extensibility objects unless there is a consumer ready to use them.</p>
+<p>To better explain this concept, imagine a Team Explorer section plugin is extending the Pending Changes page.&nbsp; It creates a section class that implements&nbsp;ITeamExplorerSection and chooses the Pending Changes page as its parent.&nbsp; This will cause
+ the section to be created when the Pending Changes page is created, but how can that section read the current Pending Changes&nbsp;data (included changes, excluded changes, selections, etc)?&nbsp; The Pending Changes page exposes the
+<a title="IPendingChangesExt" href="http://msdn.microsoft.com/en-us/library/hh716529.aspx">
+IPendingChangesExt</a> extensibility object for just this purpose.&nbsp; When any section calls GetService(typeof(IPendingChangesExt)), the Pending Changes page will create and return its extensibility object.</p>
+<p>If you are building a page or section plugin that you anticipate others will want to extend, then you're encouraged to expose an extensibility&nbsp;object of your own that can be queried.&nbsp; The suggested naming is IPageNameExt.</p>
+<p>Navigation items and links are not&nbsp;given a service provider.&nbsp; The Visual Studio service provider can be imported using MEF in an ImportingConstructor or as an imported property.&nbsp; This is an example using an ImportingConstructor:</p>
+<div>
+<div class="scriptcode">
+<div class="pluginEditHolder" pluginCommand="mceScriptCode">
+<div class="title"><span>C#</span></div>
+<div class="pluginLinkHolder"><span class="pluginEditHolderLink">Edit</span>|<span class="pluginRemoveHolderLink">Remove</span></div>
+<span class="hidden">csharp</span>
+<pre class="hidden">[TeamExplorerNavigationItem(MyItemId, 100)]
+public class MyNavigationItem : ITeamExplorerNavigationItem
+{
+    [ImportingConstructor]
+    public MyNavigationItem([Import(typeof(<a class="libraryLink" href="http://msdn.microsoft.com/en-US/library/Microsoft.VisualStudio.Shell.SVsServiceProvider.aspx"  title="Auto generated link to Microsoft.VisualStudio.Shell.SVsServiceProvider">Microsoft.VisualStudio.Shell.SVsServiceProvider</a>))] IServiceProvider serviceProvider)
+    {
+        this.ServiceProvider = serviceProvider;
+    }
+
+    private IServiceProvider ServiceProvider { get; set; }
+}</pre>
+<div class="preview">
+<pre class="csharp">[TeamExplorerNavigationItem(MyItemId,&nbsp;<span class="cs__number">100</span>)]&nbsp;
+<span class="cs__keyword">public</span>&nbsp;<span class="cs__keyword">class</span>&nbsp;MyNavigationItem&nbsp;:&nbsp;ITeamExplorerNavigationItem&nbsp;
+{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;[ImportingConstructor]&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">public</span>&nbsp;MyNavigationItem([Import(<span class="cs__keyword">typeof</span>(<a class="libraryLink" href="http://msdn.microsoft.com/en-US/library/Microsoft.VisualStudio.Shell.SVsServiceProvider.aspx"  title="Auto generated link to Microsoft.VisualStudio.Shell.SVsServiceProvider">Microsoft.VisualStudio.Shell.SVsServiceProvider</a>))]&nbsp;IServiceProvider&nbsp;serviceProvider)&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">this</span>.ServiceProvider&nbsp;=&nbsp;serviceProvider;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;
+&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs__keyword">private</span>&nbsp;IServiceProvider&nbsp;ServiceProvider&nbsp;{&nbsp;<span class="cs__keyword">get</span>;&nbsp;<span class="cs__keyword">set</span>;&nbsp;}&nbsp;
+}</pre>
+</div>
+</div>
+</div>
+</div>
+<h3>Navigation</h3>
+<p>To navigate to a page in Team Explorer, use the NavigateToPage method on on the
+<a title="ITeamExplorer" href="http://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.controls.iteamexplorer.aspx">
+ITeamExplorer</a> interface (GetService(typeof(ITeamExplorer)).&nbsp; The method accepts a page ID and an optional intial context object.&nbsp; The ClosePage method can be used to close the current page, falling back to the previous page in the navigation history.</p>
+<p>The current page is exposed via the CurrentPage property.</p>
+<h3>Notifications</h3>
+<p>Team Explorer offers a simple notification system where a message can be shown at the top of the Team Explorer window.&nbsp;&nbsp;A notification consists of a text message, a NotificationType, a NotificationFlags, an optional ICommand callback, and an ID.&nbsp;
+ Notifications&nbsp;are sent using the ShowNotification method on the <a title="ITeamExplorer" href="http://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.controls.iteamexplorer.aspx">
+ITeamExplorer</a> interface.</p>
+<p>The&nbsp;text message for a notification may be simple text, or it may have embedded links using the syntax:</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; &quot;Click [here](link_info) to see more information&quot;</p>
+<p>When the link is clicked, the ICommand callback will be called, and the link_info text in the parens will be passed as the ICommand param.&nbsp; If there are multiple links, the callback can differentiate between them by examining the link_info that is passed
+ to the callback.</p>
+<p>The&nbsp;NotificationType determines if the notification is an informational, error, or warning message.&nbsp; Notifications are automatically cleared on any page navigation, but the NotificationFlags.RequiresConfirmation flag may be specified to require
+ the user to acknowledge/dismiss it.</p>
+<p>Notifications have a guid for identification.&nbsp; If a notification is visible and another notification with the same ID is shown, the second will replace the first.&nbsp; Notifications with different IDs are stacked vertically with a scrollbar.&nbsp;
+ Notifications can be selectively hidden by calling ITeamExplorer.HideNotification and passing the ID.</p>
+<h3>Useful Classes</h3>
+<p>This is a list of classes that may be useful&nbsp;to Team Explorer plugin implementors.&nbsp; They contain constants for things like the built-in page IDs.</p>
+<ul>
+<li><a title="TeamExplorerPageIds" href="http://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.controls.teamexplorerpageids.aspx">TeamExplorerPageIds</a>
+</li><li><a title="TeamExplorerNavigationItemIds" href="http://msdn.microsoft.com/en-us/library/microsoft.teamfoundation.controls.teamexplorernavigationitemids.aspx">TeamExplorerNavigationItemIds</a>
+</li></ul>
+
+</div>
+
+
+    </div>
+</body>
+</html>
