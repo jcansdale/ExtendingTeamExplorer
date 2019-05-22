@@ -11,10 +11,12 @@ namespace Microsoft.TeamExplorerSample.Sync
     /// <summary>
     /// Publish section.
     /// </summary>
-    [TeamExplorerSection(SectionId, TeamExplorerPageIds.GitCommits, 900)]
+    [TeamExplorerSection(SectionId, TeamExplorerPageIds.GitCommits, Priority)]
     public class PublishSection : TeamExplorerBaseSection
     {
         public const string SectionId = "35B18474-005D-4A2A-9CCF-FFFFEB60F1F5";
+        public const int Priority = 4;
+
         readonly Guid PushToRemoteSectionId = new Guid("99ADF41C-0022-4C03-B3C2-05047A3F6C2C");
 
         /// <summary>
