@@ -54,18 +54,6 @@
     <Reference Include="Microsoft.TeamFoundation.Controls">
       <HintPath>..\..\lib\16.0\Microsoft.TeamFoundation.Controls.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.TeamFoundation.VersionControl.Client">
-      <HintPath>..\..\lib\16.0\Microsoft.TeamFoundation.VersionControl.Client.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.TeamFoundation.VersionControl.Controls">
-      <HintPath>..\..\lib\16.0\Microsoft.TeamFoundation.VersionControl.Controls.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.VisualStudio.TeamFoundation">
-      <HintPath>..\..\lib\16.0\Microsoft.VisualStudio.TeamFoundation.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.VisualStudio.TeamFoundation.VersionControl">
-      <HintPath>..\..\lib\16.0\Microsoft.VisualStudio.TeamFoundation.VersionControl.dll</HintPath>
-    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
