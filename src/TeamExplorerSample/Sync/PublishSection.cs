@@ -58,9 +58,12 @@ namespace Microsoft.TeamExplorerSample.Sync
 
         void Section_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(ITeamExplorerSection.IsVisible))
+            switch (e.PropertyName)
             {
-                RefreshVisibility();
+                case nameof(ITeamExplorerSection.IsVisible):
+                case nameof(ITeamExplorerSection.SectionContent):
+                    RefreshVisibility();
+                    break;
             }
         }
 
@@ -72,7 +75,7 @@ namespace Microsoft.TeamExplorerSample.Sync
             {
                 if (page.GetSection(PushToRemoteSectionId) is ITeamExplorerSection pushToRemoteSection)
                 {
-                    if (pushToRemoteSection.IsVisible)
+                    if (pushToRemoteSection.SectionContent != null && pushToRemoteSection.IsVisible)
                     {
                         visible = true;
                     }
