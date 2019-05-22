@@ -17,14 +17,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Microsoft.TeamExplorerSample.SelectedFileInfo
+namespace Microsoft.TeamExplorerSample.Sync
 {
     /// <summary>
     /// Interaction logic for SelectedFileInfoView.xaml
     /// </summary>
-    public partial class SelectedFileInfoView : UserControl
+    public partial class PublishView : UserControl
     {
-        public SelectedFileInfoView()
+        public PublishView()
         {
             InitializeComponent();
         }
@@ -32,13 +32,13 @@ namespace Microsoft.TeamExplorerSample.SelectedFileInfo
         /// <summary>
         /// Parent section.
         /// </summary>
-        public SelectedFileInfoSection ParentSection
+        public PublishSection ParentSection
         {
-            get { return (SelectedFileInfoSection)GetValue(ParentSectionProperty); }
+            get { return (PublishSection)GetValue(ParentSectionProperty); }
             set { SetValue(ParentSectionProperty, value); }
         }
         public static readonly DependencyProperty ParentSectionProperty =
-            DependencyProperty.Register("ParentSection", typeof(SelectedFileInfoSection), typeof(SelectedFileInfoView));
+            DependencyProperty.Register("ParentSection", typeof(PublishSection), typeof(PublishView));
 
         /// <summary>
         /// Set encoding button Click event handler.

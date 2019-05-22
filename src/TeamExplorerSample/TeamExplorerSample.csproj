@@ -54,18 +54,6 @@
     <Reference Include="Microsoft.TeamFoundation.Controls">
       <HintPath>..\..\lib\16.0\Microsoft.TeamFoundation.Controls.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.TeamFoundation.VersionControl.Client">
-      <HintPath>..\..\lib\16.0\Microsoft.TeamFoundation.VersionControl.Client.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.TeamFoundation.VersionControl.Controls">
-      <HintPath>..\..\lib\16.0\Microsoft.TeamFoundation.VersionControl.Controls.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.VisualStudio.TeamFoundation">
-      <HintPath>..\..\lib\16.0\Microsoft.VisualStudio.TeamFoundation.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.VisualStudio.TeamFoundation.VersionControl">
-      <HintPath>..\..\lib\16.0\Microsoft.VisualStudio.TeamFoundation.VersionControl.dll</HintPath>
-    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -81,18 +69,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Guids.cs" />
-    <Compile Include="Helpers.cs" />
-    <Compile Include="RecentChanges\AllChangesSection.cs" />
-    <Compile Include="RecentChanges\ChangesSectionBase.cs" />
-    <Compile Include="RecentChanges\ChangesSectionView.xaml.cs">
-      <DependentUpon>ChangesSectionView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="RecentChanges\MyChangesSection.cs" />
-    <Compile Include="RecentChanges\RecentChangesNavigationLink.cs" />
-    <Compile Include="RecentChanges\RecentChangesPage.cs" />
-    <Compile Include="RecentChanges\RecentChangesPageView.xaml.cs">
-      <DependentUpon>RecentChangesPageView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -104,9 +80,9 @@
     <Compile Include="Base\TeamExplorerBaseNavigationLink.cs" />
     <Compile Include="Base\TeamExplorerBasePage.cs" />
     <Compile Include="Base\TeamExplorerBaseSection.cs" />
-    <Compile Include="SelectedFileInfo\SelectedFileInfoSection.cs" />
-    <Compile Include="SelectedFileInfo\SelectedFileInfoView.xaml.cs">
-      <DependentUpon>SelectedFileInfoView.xaml</DependentUpon>
+    <Compile Include="Sync\PublishSection.cs" />
+    <Compile Include="Sync\PublishView.xaml.cs">
+      <DependentUpon>PublishView.xaml</DependentUpon>
     </Compile>
     <Compile Include="TeamExplorerSamplePackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -132,20 +108,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Package.ico" />
-    <Resource Include="Readme.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="RecentChanges\ChangesSectionView.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Sync\PublishView.xaml">
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="RecentChanges\RecentChangesPageView.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SelectedFileInfo\SelectedFileInfoView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -153,6 +120,7 @@
       <Version>16.0.81-pre</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <UseCodebase>true</UseCodebase>
   </PropertyGroup>
